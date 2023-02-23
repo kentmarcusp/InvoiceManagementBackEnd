@@ -1,11 +1,14 @@
 package com.webapp.InvoiceManagementApp.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name= "customer")
@@ -39,11 +42,17 @@ public class Customer {
     @Column(name = "iban")
     private String iban;
 
-    @Column(name = "bankname")
-    private String bankname;
+    @Column(name = "bankName")
+    private String bankName;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="role_id", referencedColumnName = "role_id", nullable = false)
     private Role role;
+
+/*  @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Invoice> invoiceList;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Invoice> invoiceList;*/
 
 }

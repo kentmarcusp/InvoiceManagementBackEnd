@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/bill/statustype")
+@RequestMapping("/api/invoice/statustype")
 public class StatusTypeController {
 
     private final StatusTypeService statusTypeService;
