@@ -2,24 +2,21 @@ package com.webapp.InvoiceManagementApp.Service;
 
 import com.webapp.InvoiceManagementApp.Model.Customer;
 import com.webapp.InvoiceManagementApp.Repository.CustomerRepository;
-import jakarta.transaction.Transactional;
-import org.slf4j.Logger;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CustomerService {
+@AllArgsConstructor
+public class CustomerService implements UserDetailsService {
 
     private final CustomerRepository customerRepository;
-
-
-    @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
@@ -29,6 +26,20 @@ public class CustomerService {
         return customerRepository.findById(id);
 
     }
+    public Optional<Customer> findUserByEmail(String email) {
+        return customerRepository.findCustomerByEmail(email);
+    }
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return customerRepository.findCustomerByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Email '%s' not found"));
+    }
 
+    public Boolean isValidEmail(String email) {
+        return email.contains("@");
+    }
 
+    public Customer saveCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
 }

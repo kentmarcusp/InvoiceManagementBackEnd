@@ -7,11 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Date;
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.webapp.InvoiceManagementApp")
 public class InvoiceManagementAppApplication {
 
     public static void main(String[] args) {
@@ -82,7 +83,6 @@ public class InvoiceManagementAppApplication {
 
             /* Set "customer" properties*/
             Customer testUser = new Customer();
-            testUser.setUsername("user");
             testUser.setPassword("password");
             testUser.setEmail("test@email.com");
             testUser.setCreated_at(new Date());

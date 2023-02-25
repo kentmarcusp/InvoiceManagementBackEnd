@@ -1,29 +1,31 @@
 package com.webapp.InvoiceManagementApp.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name= "customer")
 @Data
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Customer implements UserDetails {
     //maybe use sequences?
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private long customer_id;
-
-    @Column(name = "username", nullable = false)
-    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -49,10 +51,62 @@ public class Customer {
     @JoinColumn(name="role_id", referencedColumnName = "role_id", nullable = false)
     private Role role;
 
-/*  @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-    private List<Invoice> invoiceList;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-    private List<Invoice> invoiceList;*/
+    /*  @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+        private List<Invoice> invoiceList;
+
+        @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+        private List<Invoice> invoiceList;*/
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return "";
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+
+
+/*
+    public static Customer fromAuthRequestDto(AuthRequestDto registerRequestDto, PasswordEncoder passwordEncoder) {
+        return new Customer(10,
+                registerRequestDto.getEmail(),
+                passwordEncoder.encode(registerRequestDto.getPassword()),
+                new Date(),
+                new Date(),
+                null,
+                null,
+                Role.REGULAR_USER);
+    }
+*/
+
 
 }
