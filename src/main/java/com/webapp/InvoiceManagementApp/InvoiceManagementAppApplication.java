@@ -1,16 +1,14 @@
 package com.webapp.InvoiceManagementApp;
 
-import com.webapp.InvoiceManagementApp.Model.*;
-import com.webapp.InvoiceManagementApp.Repository.*;
+import com.webapp.InvoiceManagementApp.model.*;
+import com.webapp.InvoiceManagementApp.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.webapp.InvoiceManagementApp")
 public class InvoiceManagementAppApplication {
@@ -35,11 +33,11 @@ public class InvoiceManagementAppApplication {
             Role roleUser = new Role();
             roleUser.setRole_id(1);
             roleUser.setCreatedAt(new Date());
-            roleUser.setName("testName");
+            roleUser.setName("Customer");
             Role roleAdmin = new Role();
             roleAdmin.setRole_id(2);
             roleAdmin.setCreatedAt(new Date());
-            roleAdmin.setName("testName");
+            roleAdmin.setName("Admin");
             roleRepository.save(roleUser);
             roleRepository.save(roleAdmin);
 
@@ -59,12 +57,12 @@ public class InvoiceManagementAppApplication {
 
             /* Set "contactType" properties */
             ContactType contactTypeOwner = new ContactType();
-            contactTypeOwner.setContactType_id(1);
-            contactTypeOwner.setStatus("Owner");
+            contactTypeOwner.setContactTypeId(1);
+            contactTypeOwner.setName("Owner");
 
             ContactType contactTypeCustomer = new ContactType();
-            contactTypeCustomer.setContactType_id(2);
-            contactTypeCustomer.setStatus("Customer");
+            contactTypeCustomer.setContactTypeId(2);
+            contactTypeCustomer.setName("Customer");
 
             contactTypeRepository.save(contactTypeOwner);
             contactTypeRepository.save(contactTypeCustomer);
@@ -84,7 +82,7 @@ public class InvoiceManagementAppApplication {
             /* Set "customer" properties*/
             Customer testUser = new Customer();
             testUser.setPassword("password");
-            testUser.setEmail("test@email.com");
+            testUser.setEmail("tesEmailjne@email.com");
             testUser.setCreated_at(new Date());
             testUser.setUpdated_at(new Date());
             testUser.setIban("EE123123123123");
