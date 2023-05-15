@@ -53,7 +53,7 @@ public class PersonalContactInfoController {
             throw new Exception("missing inputs");
         } else {
             Long customerId = jwtTokenUtil.getCustomerId(token);
-            Optional<CompanyContactInfo> ownerInformation = companyContactInfoService.getCompanyContactInfoByContactInfoId(companyContactInfo.getCompanyContactInfo_id());
+            Optional<CompanyContactInfo> ownerInformation = companyContactInfoService.getCompanyContactInfoByContactInfoId(companyContactInfo.getCompanyContactInfoId());
             if (ownerInformation.isEmpty()) {
                 throw new Exception("error");
             }

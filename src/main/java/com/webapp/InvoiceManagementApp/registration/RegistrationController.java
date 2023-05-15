@@ -40,11 +40,9 @@ public class RegistrationController {
             customer.setEmail(request.getEmail());
             customer.setPassword(passwordEncoder.encode(request.getPassword()));
 
-
             Customer temp = customerService.saveCustomer(customer);
 
             var token = jwtTokenUtil.generate(temp);
-            //log.info("Successful login: " + temp.getEmail());
 
             return ResponseEntity.ok(token);
         }

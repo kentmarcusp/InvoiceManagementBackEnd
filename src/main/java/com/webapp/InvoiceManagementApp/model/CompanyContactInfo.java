@@ -17,7 +17,7 @@ public class CompanyContactInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="companyContactInfo_id")
-    private long companyContactInfo_id;
+    private long companyContactInfoId;
 
     @Column(name = "contactName", nullable = false)
     private String contactName;

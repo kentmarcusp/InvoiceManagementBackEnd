@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Entity
 @Table(name = "statusType")
 @Data
@@ -19,4 +22,14 @@ public class StatusType {
 
     @Column(name = "status")
     private String status;
+
+    public static class StatusTypeValue {
+        public static String AWAITING = "STATUS_AWAIT";
+        public static String COMPLETED = "STATUS_COMPLETED";
+    }
+
+    public static StatusType AWAITING = new StatusType(1L, StatusTypeValue.AWAITING);
+    public static StatusType COMPLETED = new StatusType(1L, StatusTypeValue.COMPLETED);
+
+    public static List<StatusType> STATUSTYPES = Arrays.asList(AWAITING, COMPLETED);
 }

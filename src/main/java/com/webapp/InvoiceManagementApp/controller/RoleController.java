@@ -22,7 +22,6 @@ public class RoleController {
     @ResponseBody
     //@CrossOrigin
     public List<Role> getAllRoles() {
-        System.out.println("attempting to get all roles");
         return roleService.getRoles();
     }
 

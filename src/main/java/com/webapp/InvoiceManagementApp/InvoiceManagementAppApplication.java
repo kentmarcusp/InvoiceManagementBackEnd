@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SpringBootApplication(scanBasePackages = "com.webapp.InvoiceManagementApp")
@@ -107,14 +108,14 @@ public class InvoiceManagementAppApplication {
             /* Set "Invoice" properties*/
 
             Invoice tempInvoiceInfo = new Invoice();
-            tempInvoiceInfo.setInvoiceNumber(1);
+            tempInvoiceInfo.setInvoiceNumber("1");
             tempInvoiceInfo.setInvoicePriceSum(10.00);
             tempInvoiceInfo.setVatValue(20.00);
-            tempInvoiceInfo.setSurchargePercentage(15.00);
-            tempInvoiceInfo.setCreated_at(new Date());
-            tempInvoiceInfo.setDue_date(new Date());
-            tempInvoiceInfo.setIssuerCompanyName("fupsi kompanii");
+            tempInvoiceInfo.setSurchargeValue(15.00);
+            tempInvoiceInfo.setCreated_at(new Date().toString());
+            tempInvoiceInfo.setDue_date(new Date().toString());
             tempInvoiceInfo.setDescription("fupsi kompanii description");
+            tempInvoiceInfo.setInvoiceReferenceNumber("123123");
             tempInvoiceInfo.setCustomer(testUser);
             tempInvoiceInfo.setCompanyContactInfo(testCompany);
             tempInvoiceInfo.setStatusType(statusTypeSuccess);
@@ -127,12 +128,15 @@ public class InvoiceManagementAppApplication {
 
             InvoiceRow invoiceRowFields = new InvoiceRow();
             invoiceRowFields.setRowNumber(1);
+            invoiceRowFields.setRowProductAmount(1);
+            invoiceRowFields.setRowProductPrice(10.00);
+            invoiceRowFields.setRowSurcharge(10.00);
             invoiceRowFields.setVatPercentage(20.00);
             invoiceRowFields.setTotalSum(100.00);
             invoiceRowFields.setVatSum(25.00);
-            invoiceRowFields.setTotalSumWithoutVat(150.00);
+            //invoiceRowFields.setTotalSumWithoutVat(150.00);
             invoiceRowFields.setDescription("Description jne....");
-            invoiceRowFields.setInvoice(tempInvoiceInfo);
+            invoiceRowFields.setInvoiceId(1L);
 
             invoiceRowRepository.save(invoiceRowFields);
 

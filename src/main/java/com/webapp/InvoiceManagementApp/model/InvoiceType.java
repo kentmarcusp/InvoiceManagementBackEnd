@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Entity
 @Table(name = "invoiceType")
 @Data
@@ -23,7 +26,16 @@ public class InvoiceType {
     @Column(name = "description")
     private String description;
 
-    //add invoice onetomany
+    public static class InvoiceTypeValue {
+        public static String SELL = "INVOICE_SELL";
+        public static String PURCHASE = "INVOICE_PURCHASE";
+    }
+
+    public static InvoiceType SELL = new InvoiceType(1L, InvoiceTypeValue.SELL, "Müügiarve");
+    public static InvoiceType PURCHASE = new InvoiceType(2L, InvoiceTypeValue.PURCHASE, "Ostuarve.");
+
+    public static List<InvoiceType> INVOICETYPES = Arrays.asList(SELL, PURCHASE);
+
 
 
 }

@@ -8,6 +8,7 @@ import com.webapp.InvoiceManagementApp.service.ContactTypeService;
 import com.webapp.InvoiceManagementApp.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,10 +75,15 @@ public class CompanyContactInfoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCompanyContactInfoByCompanyContactInfoId(@RequestHeader(name = "Authorization") String token,
-                                                               @PathVariable Long id) throws Exception {
+    public ResponseEntity deleteCompanyContactInfoByCompanyContactInfoId(@RequestHeader(name = "Authorization") String token,
+                                                                         @PathVariable Long id) throws Exception {
         log.info("Trying to create new company contact.");
-        companyContactInfoService.deleteContactInfo(id);
-        log.info("ContactInfo deleted successfully");
+        if (companyContactInfoService.isIncludedInExistingInvoices(id)) {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        } else {
+            companyContactInfoService.deleteContactInfo(id);
+            log.info("ContactInfo deleted successfully");
+            return ResponseEntity.ok("Deleted companyContactInfo with id: " + id);
+        }
     }
 }

@@ -41,9 +41,5 @@ public class Role {
     public static List<Role> ROLES = Arrays.asList(REGULAR_USER, ADMIN);
 
 
-    public String toSpringRole() {
-        return name;
-    }
-
 }
 

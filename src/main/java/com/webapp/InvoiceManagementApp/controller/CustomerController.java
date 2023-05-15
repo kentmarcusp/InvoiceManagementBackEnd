@@ -49,12 +49,6 @@ public class CustomerController {
                                           @RequestHeader(name = "Authorization") String token) throws Exception {
         log.info("Trying to update company owner contact info.");
 
-        Long customerId = jwtTokenUtil.getCustomerId(token);
-
-        System.out.println("customer.getCustomerId()");
-        System.out.println(customer.getCustomerId());
-        System.out.println(customerId);
-
         return customerService.findCustomerById(customer.getCustomerId()).orElseThrow(() -> new Exception("Customer with id: {" + "test" + "} not found."));
     }
 

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-//Long = id type
 @Repository
 @Transactional()
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
