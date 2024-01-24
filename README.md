@@ -12,10 +12,11 @@ The project is predominantly developed using Java as the primary programming lan
 
 Project's functionality is based upon simple **CRUD** controllers, that validate, update and construct input and output information.
 
-User registration and verification is built upon a simple self-developed JWT authentication system, that verifies user input, accessibility and credibility through encoded header data.
+User registration and verification is built upon a simple self-developed **JWT** authentication system, that verifies user input, accessibility and credibility through encoded header data.
 
 ### Invoice generation
-This functionality is carried out through an external library called iTextPDF, which in this project's case, helps construct a PDF-file based on the input parameters. iTextPDF allows to 
+This functionality is carried out through an external library called **iTextPDF**, which in this project's case, helps construct a PDF-file based on the input parameters. iTextPDF enables the subdivision of a page into multiple elements, each offering the flexibility for design manipulation.
+
 ### Example of a generated invoice
 <img src="https://github.com/kentmarcusp/InvoiceManagementBackEnd/assets/54845506/3ccedb59-062f-41e8-9aa1-f6fe6b492530" alt="Folder structure." width="50%">
 
