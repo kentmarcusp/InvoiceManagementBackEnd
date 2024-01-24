@@ -4,16 +4,21 @@ This project was written as my Thesis for the IT Systems Development curriculum 
 The previously mentioned functionality would allow users to create and download invoices in PDF-formats, manage their contact book information and enter their business transactions.
 
 The project is predominantly developed using Java as the primary programming language, and it incorporates key technologies such as **Spring**, **Spring Boot**  **Spring Security**, **JPA** (Java Persistence API), and **Maven** for streamlined development and management. The business logic is divided into multiple layers, using a basic **MVC**-like structural pattern (**entity/repository/service/controller**). 
+<br>
 
 <img src="https://github.com/kentmarcusp/InvoiceManagementBackEnd/assets/54845506/1a7ad429-d2e0-4df1-8765-5ec749ced770" alt="Folder structure." width="30%">
 
-*Back-end file structure*
+***Back-end file structure***  
 
-
+<br>
 Project's functionality is based upon simple **CRUD** controllers, that validate, update and construct input and output information.
 
-User registration and verification is built upon a simple self-developed **JWT** authentication system, that verifies user input, accessibility and credibility through encoded header data.
+![image](https://github.com/kentmarcusp/InvoiceManagementBackEnd/assets/54845506/b2e2851b-725e-4db3-a213-a656602398a5)  
+***Example of Business logic inside the invoice controller POST-method***
 
+<br>
+User registration and verification is built upon a simple self-developed **JWT** authentication system, that verifies user input, accessibility and credibility through encoded header data.
+<br>
 ### Invoice generation
 This functionality is carried out through an external library called **iTextPDF**, which in this project's case, helps construct a PDF-file based on the input parameters. iTextPDF enables the subdivision of a page into multiple elements, each offering the flexibility for design manipulation.
 
